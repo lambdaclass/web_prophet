@@ -2,10 +2,8 @@
 import pandas as pd
 import itertools
 
-df = pd.DataFrame({"pear": [1,2,3], "apple": [2,3,"hola"], "orange": [3,4,5]})
-
 # This information is known beforehand
-COLUMNS_INFO = {"pear": "object", "apple": "object", "orange": "object"}
+COLUMNS_INFO = {"DS": "object", "Y": "float64"}
 
 default_params = {'columns': 2, 'column_info': COLUMNS_INFO}
 
@@ -25,10 +23,12 @@ def check_columns_types(df, columns_info):
 
 def check_column_type(df, col_info):
     col_name, col_type = col_info
-    if df[col_name].dtype.name == col_type:
+    if col_name not in df:
+        return '"{}" column must be present'.format(col_name)
+    elif df[col_name].dtype.name == col_type:
         return ''
     else:
-        return ': '.join([col_name, 'wrong type'])
+        return '"{}" column has a wrong type'.format(col_name)
 
 def check_number_of_columns(df, number):
     if len(df.columns) == number:

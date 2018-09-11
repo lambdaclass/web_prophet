@@ -33,10 +33,10 @@ def create_plots(filepath):
     buf1 = BytesIO()
     buf2 = BytesIO()
 
-    with open('tmp/img1.png', 'wb') as file1:
+    with open('static/img/img1.png', 'wb') as file1:
         canvas1.print_png(buf1)
         file1.write(buf1.getvalue())
 
-    with open('tmp/img2.png', 'wb') as file2:
+    with open('static/img/img2.png', 'wb') as file2:
         canvas2.print_png(buf2)
         file2.write(buf2.getvalue())

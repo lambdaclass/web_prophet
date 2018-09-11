@@ -4,6 +4,7 @@ from validation import validate
 from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
 from flask import Flask, request, Response, render_template, flash, redirect, url_for
+from prophet_util import create_plots
 
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = set(['csv'])
@@ -42,8 +43,16 @@ def index():
             file.save(filepath)
             df = pd.read_csv(filepath)
             validations = validate(df)
-            put_flash(validations)
+            if validations == []:
+                create_plots(filepath)
+                return redirect(url_for('show'))
+            else:
+                put_flash(validations)
             return redirect(url_for('index'))
         else:
             flash('Error: wrong extension', 'danger')
             return redirect(url_for('index'))
+
+@app.route('/show', methods=['GET'])
+def show():
+    return render_template('show.html')

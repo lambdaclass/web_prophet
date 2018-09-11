@@ -7,13 +7,16 @@
 
 {% block content %}
 <div class="main-container container-fluid">
-    <nav class="main-nav navbar">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-            <div class="navbar-header"><h1 class="title">Menu</h1></div>
+            <div class="navbar-header"> 
+                <a href="#" class="navbar-brand">Web Prophet</a>
+            </div>
         </div>
     </nav>
 
     {{ util.flashed_messages(dismissible=True) }}
+
     <div class="col-xs-6 col-md-4"></div>
     <div class="col-xs-6 col-md-4">
         <div class="row">
