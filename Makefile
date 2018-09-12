@@ -1,7 +1,7 @@
 .PHONY: install run
 
 install:
-	pip install -r requirements.txt
+	pipenv install
 
 run:
 	bash -c "export FLASK_APP=app.py && flask run"

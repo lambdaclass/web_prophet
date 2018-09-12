@@ -5,7 +5,7 @@ from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
 from flask import request, Response, render_template, flash, redirect, url_for
 from prophet_util import create_plots
-from setup import create_app, allowed_file
+from config import create_app, allowed_file
 
 app = create_app(__name__)
 
