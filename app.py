@@ -3,23 +3,14 @@ import pandas as pd
 from validation import validate
 from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
-from flask import Flask, request, Response, render_template, flash, redirect, url_for
+from flask import request, Response, render_template, flash, redirect, url_for
 from prophet_util import create_plots
+from setup import create_app, allowed_file
 
-UPLOAD_FOLDER = './uploads'
-ALLOWED_EXTENSIONS = set(['csv'])
-APP_DIR = os.path.dirname(os.path.realpath(__name__))
+app = create_app(__name__)
 
-app = Flask(__name__)
-Bootstrap(app)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-if __name__ == '__main__':
+if __name__ == '__main__': 
     app.run(debug=True)
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def put_flash(validations):
     if validations == []:
