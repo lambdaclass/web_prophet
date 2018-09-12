@@ -6,11 +6,11 @@ Web Prophet is a small tool that aims to help to analyze time series data using 
 
 ### Prerequisites
 
-First of all you'll need a working Python 3 environment with [pipenv](https://pipenv.readthedocs.io/en/latest/) installed
+First of all you'll need a working Python 3 environment with [pipenv](https://pipenv.readthedocs.io/en/latest/) installed.
 
 ### Installing
 
-To install the required packages run:
+To create a virtualenv and install the required packages run:
 
 ```
 $ make install

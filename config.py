@@ -5,10 +5,11 @@ from flask_bootstrap import Bootstrap
 UPLOAD_DIR = './uploads'
 IMG_DIR = './static/img'
 
-ALLOWED_EXTENSIONS = set(['csv'])
+ALLOWED_EXTENSIONS = set(['.csv'])
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    __file, file_ext = os.path.splitext(filename)
+    return file_ext in ALLOWED_EXTENSIONS
 
 def create_upload_dirs():
     if not os.path.exists(UPLOAD_DIR):
