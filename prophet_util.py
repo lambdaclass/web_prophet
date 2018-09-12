@@ -9,7 +9,6 @@ from io import BytesIO
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 
-
 def get_figures(filepath):
     df = pd.read_csv(filepath)
     df.columns = ['ds', 'y']
@@ -24,7 +23,6 @@ def get_figures(filepath):
 
     return fig1, fig2
 
-
 def create_plots(filepath):
     fig1, fig2 = get_figures(filepath)
 
@@ -32,7 +30,7 @@ def create_plots(filepath):
     canvas2 = FigureCanvasAgg(fig2)
     buf1 = BytesIO()
     buf2 = BytesIO()
-
+    
     with open('static/img/img1.png', 'wb') as file1:
         canvas1.print_png(buf1)
         file1.write(buf1.getvalue())

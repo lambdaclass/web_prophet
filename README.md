@@ -6,8 +6,7 @@ Web Prophet is a small tool that aims to help to analyze time series data using 
 
 ### Prerequisites
 
-First of all you'll need a working Python 3 environment.
-This project is developed using [pyenv](https://github.com/pyenv/pyenv) as version manager.
+First of all you'll need a working Python 3 environment with [pipenv](https://pipenv.readthedocs.io/en/latest/) installed
 
 ### Installing
 
@@ -34,4 +33,4 @@ Then choose a CSV file of your preference and submit the form. Wait a few second
 * [Python 3.7](https://www.python.org/downloads/release/python-370/)
 * [Flask](http://www.dropwizard.io/1.0.2/docs/) 
 * [Prophet](https://github.com/facebook/prophet)
-* [pyenv](https://github.com/pyenv/pyenv)
+* [pypenv](https://pipenv.readthedocs.io/en/latest/)

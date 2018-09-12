@@ -30,7 +30,7 @@ def index():
         file = request.files['upload']  
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            filepath = os.path.join(app.config['UPLOAD_DIR'], filename)
             file.save(filepath)
             df = pd.read_csv(filepath)
             validations = validate(df)
