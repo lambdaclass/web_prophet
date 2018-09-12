@@ -16,7 +16,11 @@ def put_flash(validations):
         flash('File Uploaded', 'success')
     else:
         [flash(err, 'danger') for err in validations]
-            
+
+def get_filepath(file):
+    filename = secure_filename(file.filename)
+    return os.path.join(app.config['UPLOAD_DIR'], filename)
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -28,10 +32,8 @@ def upload():
         return redirect(url_for('index'))
     file = request.files['upload']  
     if file and config.allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_DIR'], filename)
+        filepath = get_filepath(file)
         file.save(filepath)
-
         validations = val.validate_csv(filepath)
         if validations == []:
             create_plots(filepath)
