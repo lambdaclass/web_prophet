@@ -1,19 +1,21 @@
-import pandas as pd
 import itertools
+import pandas as pd
 
 # This information is known beforehand
 COLUMNS_INFO = {"DS": "object", "Y": "float64"}
 
 default_params = {'columns': 2, 'column_info': COLUMNS_INFO}
 
+
 def validate_csv(filepath, params=default_params):
     df = pd.read_csv(filepath)
     errors = []
     number_of_columns = params['columns']
-    columns_info = params['column_info'] 
+    columns_info = params['column_info']
     errors += check_columns_types(df, columns_info)
     errors.append(check_number_of_columns(df, number_of_columns))
-    return [err for err in errors if err is not ''] 
+    return [err for err in errors if err is not '']
+
 
 def check_columns_types(df, columns_info):
     errors = []
@@ -33,5 +35,5 @@ def check_column_type(df, col_info):
 def check_number_of_columns(df, number):
     if len(df.columns) == number:
         return ''
-    else: 
+    else:
         return 'Wrong number of columns'
