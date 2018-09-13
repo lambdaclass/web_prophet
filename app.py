@@ -11,16 +11,6 @@ app = config.create_app(__name__)
 if __name__ == '__main__':
     app.run(debug=True)
 
-def put_flash(validations):
-    if validations == []:
-        flash('File Uploaded', 'success')
-    else:
-        [flash(err, 'danger') for err in validations]
-
-def get_filepath(file):
-    filename = secure_filename(file.filename)
-    return os.path.join(app.config['UPLOAD_DIR'], filename)
-
 
 @app.route('/', methods=['GET'])
 def index():
@@ -37,7 +27,7 @@ def upload():
         filepath = get_filepath(file)
         file.save(filepath)
         validations = val.validate_csv(filepath)
-        if validations:
+        if not validations:
             prophet_util.create_plots(filepath)
             return redirect(url_for('show'))
         else:
@@ -51,3 +41,14 @@ def upload():
 @app.route('/show', methods=['GET'])
 def show():
     return render_template('show.html')
+
+
+def put_flash(validations):
+    if validations == []:
+        flash('File Uploaded', 'success')
+    else:
+        [flash(err, 'danger') for err in validations]
+
+def get_filepath(file):
+    filename = secure_filename(file.filename)
+    return os.path.join(app.config['UPLOAD_DIR'], filename)

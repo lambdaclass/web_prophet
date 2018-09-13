@@ -36,4 +36,4 @@ def check_number_of_columns(df, number):
     if len(df.columns) == number:
         return ''
     else:
-        return 'Wrong number of columns'
+        return 'Wrong number of columns, it must have {}'.format(number)
