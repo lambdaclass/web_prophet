@@ -32,6 +32,5 @@ def get_figures(filepath):
     forecast = m.predict(future)
     fig1 = m.plot(forecast)
     a = add_changepoints_to_plot(fig1.gca(), m, forecast)
-    print(a)
     fig2 = m.plot_components(forecast)
     return fig1, fig2
