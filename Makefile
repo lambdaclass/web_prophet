@@ -1,7 +1,7 @@
-.PHONY: install run
+.PHONY: deps start
 
-install:
+deps:
 	pipenv install
 
-run:
+start:
 	bash -c "export FLASK_APP=app.py && pipenv run flask run"
