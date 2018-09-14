@@ -29,7 +29,7 @@ def upload():
             prophet_util.create_plots(filepath)
             return redirect(url_for('show'))
         else:
-            put_flash(validations)
+            put_validation_flash(validations)
             return redirect(url_for('index'))
 
     else:
@@ -42,8 +42,8 @@ def show():
     return render_template('show.html')
 
 
-def put_flash(validations):
-    if validations == []:
+def put_validation_flash(validations):
+    if not validations:
         flash('File Uploaded', 'success')
     else:
         [flash(err, 'danger') for err in validations]

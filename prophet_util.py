@@ -9,18 +9,18 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg
 
 
 def create_plots(filepath):
-    fig1, fig2 = get_figures(filepath)
-    canvas1 = FigureCanvasAgg(fig1)
-    canvas2 = FigureCanvasAgg(fig2)
+    forecast_fig, components_fig = get_figures(filepath)
+    forecast_canvas = FigureCanvasAgg(forecast_fig)
+    components_canvas = FigureCanvasAgg(components_fig)
     buf1 = BytesIO()
     buf2 = BytesIO()
 
-    with open('static/img/img1.png', 'wb') as file1:
-        canvas1.print_png(buf1)
-        file1.write(buf1.getvalue())
-    with open('static/img/img2.png', 'wb') as file2:
-        canvas2.print_png(buf2)
-        file2.write(buf2.getvalue())
+    with open('static/img/img1.png', 'wb') as forecast_file:
+        forecast_canvas.print_png(buf1)
+        forecast_file.write(buf1.getvalue())
+    with open('static/img/img2.png', 'wb') as components_file:
+        components_canvas.print_png(buf2)
+        components_file.write(buf2.getvalue())
 
 
 def get_figures(filepath):
@@ -29,7 +29,7 @@ def get_figures(filepath):
     m = Prophet().fit(df)
     future = m.make_future_dataframe(periods=365)
     forecast = m.predict(future)
-    fig1 = m.plot(forecast)
-    add_changepoints_to_plot(fig1.gca(), m, forecast)
-    fig2 = m.plot_components(forecast)
-    return fig1, fig2
+    forecast_fig = m.plot(forecast)
+    add_changepoints_to_plot(forecast_fig.gca(), m, forecast)
+    components_fig = m.plot_components(forecast)
+    return forecast_fig, components_fig
