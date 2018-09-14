@@ -1,0 +1,32 @@
+<head>
+    <link href="{{ url_for('static', filename='app.css') }}" rel="stylesheet">
+</head>
+{% extends "bootstrap/base.html" %} 
+{% block title %} File Upload {% endblock %} 
+{% import "bootstrap/utils.html" as util%} 
+
+{% block content %}
+<div class="main-container container-fluid">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header"> 
+                <a href="#" class="navbar-brand">Web Prophet</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Upload a File</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {{ util.flashed_messages(dismissible=True) }}
+
+    <div class="row">
+        <div class="img-container">
+            <img src="/static/img/img1.png">
+            <img src="/static/img/img2.png">
+        </div>
+    </div>
+</div>
+{% endblock %}
