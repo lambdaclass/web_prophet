@@ -1,8 +1,7 @@
 from io import BytesIO
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
 from fbprophet import Prophet
 from fbprophet.plot import add_changepoints_to_plot
 from matplotlib.figure import Figure
