@@ -13,14 +13,14 @@ First of all you'll need a working Python 3 environment with [pipenv](https://pi
 To create a virtualenv and install the required packages run:
 
 ```
-$ make install
+$ make deps
 ```
 
 ### Running the project
 
 Run the following command to start the server:
 ```
-$ make run
+$ make start
 ```
 
 ## Usage
@@ -28,9 +28,10 @@ $ make run
 After starting the server, open your browser and go to `http://localhost:5000` to see the upload form.
 Then choose a CSV file of your preference and submit the form. Wait a few seconds and enjoy the generated plots.
 
+
 ## Built With
 
 * [Python 3.7](https://www.python.org/downloads/release/python-370/)
-* [Flask](http://www.dropwizard.io/1.0.2/docs/) 
+* [Flask](http://flask.pocoo.org/)
 * [Prophet](https://github.com/facebook/prophet)
 * [pypenv](https://pipenv.readthedocs.io/en/latest/)

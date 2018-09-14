@@ -31,6 +31,6 @@ def get_figures(filepath):
     future = m.make_future_dataframe(periods=365)
     forecast = m.predict(future)
     fig1 = m.plot(forecast)
-    a = add_changepoints_to_plot(fig1.gca(), m, forecast)
+    add_changepoints_to_plot(fig1.gca(), m, forecast)
     fig2 = m.plot_components(forecast)
     return fig1, fig2

@@ -13,27 +13,27 @@ def validate_csv(filepath, params=default_params):
     number_of_columns = params['columns']
     columns_info = params['column_info']
     errors += check_columns_types(df, columns_info)
-    errors.append(check_number_of_columns(df, number_of_columns))
-    return [err for err in errors if err is not '']
+    errors.append(has_valid_number_of_columns(df, number_of_columns))
+    return [err[1] for err in errors if err is not True]
 
 
 def check_columns_types(df, columns_info):
     errors = []
     for col_name, col_type in columns_info.items():
-        errors.append(check_column_type(df, (col_name, col_type)))
+        errors.append(is_valid_column_type(df, (col_name, col_type)))
     return list(itertools.chain(errors))
 
-def check_column_type(df, col_info):
+def is_valid_column_type(df, col_info):
     col_name, col_type = col_info
     if col_name not in df:
-        return '"{}" column must be present'.format(col_name)
+        return False, '"{}" column must be present'.format(col_name)
     elif df[col_name].dtype.name == col_type:
-        return ''
+        return True
     else:
-        return '"{}" column has a wrong type'.format(col_name)
+        return False, '"{}" column has a wrong type'.format(col_name)
 
-def check_number_of_columns(df, number):
+def has_valid_number_of_columns(df, number):
     if len(df.columns) == number:
-        return ''
+        return True
     else:
-        return 'Wrong number of columns, it must have {}'.format(number)
+        return False, 'Wrong number of columns, it must have {}'.format(number)

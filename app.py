@@ -8,9 +8,6 @@ import validations as val
 
 app = config.create_app(__name__)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 
 @app.route('/', methods=['GET'])
 def index():
@@ -22,6 +19,7 @@ def upload():
     if 'upload' not in request.files:
         flash('No file uploaded', 'danger')
         return redirect(url_for('index'))
+
     file = request.files['upload']
     if file and config.allowed_file(file.filename):
         filepath = get_filepath(file)
@@ -33,6 +31,7 @@ def upload():
         else:
             put_flash(validations)
             return redirect(url_for('index'))
+
     else:
         flash('Error: wrong extension', 'danger')
         return redirect(url_for('index'))
@@ -52,3 +51,7 @@ def put_flash(validations):
 def get_filepath(file):
     filename = secure_filename(file.filename)
     return os.path.join(app.config['UPLOAD_DIR'], filename)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
